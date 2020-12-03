@@ -1,6 +1,13 @@
 ---
 - assert:
     that:
+      - package is defined
+      - package is string
+      - package is regex("^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$")
+    fail_msg: "package must be defined, type string and follow dns pattern."
+
+- assert:
+    that:
       - state is defined
       - state is string
       - state is in [ 'present', 'absent' ]

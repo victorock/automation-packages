@@ -5,7 +5,7 @@
   register: tempfile
 
 - assemble:
-    src: templates
+    src: "{{ role_path }}/templates/"
     dest: "{{ tempfile.path }}"
 
 - community.kubernetes.k8s:

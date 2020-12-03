@@ -2,11 +2,12 @@
 apiVersion: tower.ansible.com/v1alpha1
 kind: Project
 metadata:
-  name: "{{ name }}
+  name: "{{ package }}"
+  namespace: "{{ namespace }}"
 spec:
   secret: "{{ secret }}"
   config:
-    name: "{{ name }}"
+    name: "{{ package }}"
     scm_url: "{{ repository }}"
     scm_delete_on_update: no
     scm_type: git
