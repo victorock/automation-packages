@@ -1,0 +1,13 @@
+---
+- tempfile:
+    state: file
+    suffix: template
+  register: tempfile
+
+- assemble:
+    src: templates
+    dest: "{{ tempfile.path }}"
+
+- community.kubernetes.k8s:
+    state: "{{ state }}"
+    template: "{{ tempfile.path }}"

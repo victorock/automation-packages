@@ -1,0 +1,27 @@
+---
+- assert:
+    that:
+      - state is defined
+      - state is string
+      - state is in [ 'present', 'absent' ]
+    fail_msg: "state must be defined and one of: present or absent"
+
+- assert:
+    that:
+      - organization is defined
+      - organization is string
+      - organization is regex("^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$")
+    fail_msg: "organization must be defined, type string and follow dns pattern."
+
+- assert:
+    that:
+      - secret is defined
+      - secret is string
+      - secret is regex("^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$")
+    fail_msg: "organization must be defined, type string and follow dns pattern."
+
+- assert:
+    that:
+      - repository is defined
+      - repository is string
+    fail_msg: "Repository must be defined and type string"

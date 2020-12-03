@@ -1,0 +1,6 @@
+---
+name: "backup_manager"
+organization: "Default"
+secret: "toweraccess"
+repository: "https://github.com/victorock/backup_manager"
+state: "present"

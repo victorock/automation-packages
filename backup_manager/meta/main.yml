@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  author: Victor da Costa
+  description: Example of Automation Packages
+  company: Red Hat
+  issue_tracker_url: http://github.com/victorock/automation-packages/issues/tracker
+  license: license (GPLv3)
+  min_ansible_version: 2.9
+  platforms:
+    - name: Kubernetes
+      versions:
+      - all
+    - name: Openshift
+      versions:
+      - all
+  galaxy_tags:
+    - kubernetes
+    - operator
+    - package-manager
+    - tower-config-operator
+
+dependencies: []
+collections:
+  - operator_sdk.util
+  - community.kubernetes

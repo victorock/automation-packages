@@ -1,0 +1,14 @@
+---
+apiVersion: tower.ansible.com/v1alpha1
+kind: Project
+metadata:
+  name: "{{ name }}
+spec:
+  secret: "{{ secret }}"
+  config:
+    name: "{{ name }}"
+    scm_url: "{{ repository }}"
+    scm_delete_on_update: no
+    scm_type: git
+    scm_update_on_launch: true
+    organization: "{{ organization }}"

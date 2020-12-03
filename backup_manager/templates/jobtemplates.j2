@@ -1,0 +1,16 @@
+---
+apiVersion: tower.ansible.com/v1alpha1
+kind: JobTemplate
+metadata:
+  name: "{{ name }}
+spec:
+  secret: "{{ secret }}"
+  config:
+    name: "{{ name }}"
+    playbook: "playbooks/main.yml"
+    project: "{{ name }}"
+    ask_credential_on_launch: "true"
+    ask_inventory_on_launch: "true"
+    ask_job_type_on_launch: "true"
+    ask_limit_on_launch: "true"
+    ask_variables_on_launch: "true"
