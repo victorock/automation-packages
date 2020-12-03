@@ -1,0 +1,8 @@
+---
+package: "victorock.ansible-netops"
+namespace: "ansible-platform"
+organization: "Default"
+secret: "toweraccess"
+repository: "https://github.com/victorock/ansible-netops"
+version: "master"
+state: "present"

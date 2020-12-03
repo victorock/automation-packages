@@ -1,7 +1,0 @@
----
-package: "backup-manager"
-organization: "Default"
-secret: "toweraccess"
-repository: "https://github.com/victorock/backup_manager"
-namespace: "tower-config-operator-system"
-state: "present"
