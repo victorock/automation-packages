@@ -4,15 +4,15 @@ kind: Deployment
 metadata:
   name: {{ values.resources.user }}
   labels:
-    {{ k8s_labels | indent 4 | trim }}
+    {{ values.labels | indent 4 | trim }}
 spec:
   selector:
     matchLabels:
-      {{ k8s_labels | indent 6 | trim }}
+      {{ values.labels | indent 6 | trim }}
   template:
     metadata:
       labels:
-        {{ k8s_labels | indent 8 | trim }}
+        {{ values.labels | indent 8 | trim }}
     spec:
       containers:
         - name: ansible-code
