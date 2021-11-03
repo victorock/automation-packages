@@ -1,0 +1,70 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ values.resources.user }}
+  labels:
+    {{ k8s_labels | indent 4 | trim }}
+spec:
+  selector:
+    matchLabels:
+      {{ k8s_labels | indent 6 | trim }}
+  template:
+    metadata:
+      labels:
+        {{ k8s_labels | indent 8 | trim }}
+    spec:
+      containers:
+        - name: ansible-code
+          image: "{{ values.image.name }}:{{ values.image.tag }}"
+          imagePullPolicy: "{{ values.image.pullPolicy }}"
+          securityContext:
+            privileged: true
+            runAsUser: 10000
+            fsGroup: 5000
+          ports:
+            - name: ssh
+              containerPort: 22
+          resources:
+            requests:
+              cpu: "{{ values.resources.cpu }}"
+              memory: "{{ values.resources.memory }}"
+          volumeMounts:
+            - name: etc-ssh
+              mountPath: "/etc/ssh"
+              readOnly: true
+            - name: etc-containers
+              mountPath: "/etc/containers"
+              readOnly: true
+            - name: home
+              mountPath: "/home/ansible"
+            - name: home-ssh
+              mountPath: "/home/ansible/.ssh"
+              readOnly: true
+            - name: home-containers
+              mountPath: "/home/ansible/.config/containers"
+              readOnly: true
+      volumes:
+        - name: etc-ssh
+          secret:
+            secretName: "{{ apm.name }}-etc-ssh"
+            defaultMode: 0600
+            items:
+            - key: ssh_host_rsa_key
+              path: ssh_host_rsa_key
+        - name: etc-containers
+          configMap:
+            name: "{{ galaxy.name }}-etc-containers"
+        - name: "home"
+          persistentVolumeClaim:
+            claimName: "{{ values.resources.user }}-home"
+        - name: home-ssh
+          secret:
+            secretName: "{{ apm.name }}-home-ssh"
+            defaultMode: 0600
+            items:
+            - key: authorized_keys
+              path: authorized_keys
+        - name: home-containers
+          configMap:
+            name: "{{ values.resources.user }}-home-containers"

@@ -1,2 +1,4 @@
 # automation-packages
-Repository containing Automation Packages
+Repository containing Ansible Automation Packages
+
+These packages are installed with `victorock.apm`

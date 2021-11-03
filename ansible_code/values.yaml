@@ -1,0 +1,22 @@
+---
+# Variables here will go under "{{ values.<variable name> }}"
+image:
+  name: "victorock/ansible-code"
+  tag: "latest"
+  pullPolicy: "Always"
+
+service:
+  type: "LoadBalancer"
+
+secrets:
+  authorized_keys: ""
+  ssh_host_rsa_key: ""
+  ssh_host_dsa_key: ""
+  ssh_host_ecd_key: ""
+  ssh_host_ed25519_key: ""
+
+resources:
+  user: "myuser"
+  cpu: "20m"
+  memory: "50Mi"
+  storage: "1Gi"
